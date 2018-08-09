@@ -1,0 +1,210 @@
+import java.util.Scanner;
+public class iGrade {
+ public static void main(String[] args) {
+  //initializing variables
+
+  int menu = 0;
+
+  double answer = 0.0;
+  double answer2 = 0.0;
+  double answer3 = 0.0;
+  double answer4 = 0.0;
+  double answer5 = 0.0;
+  double answer6 = 0.0;
+  double answer7 = 0.0;
+  double answer8 = 0.0;
+  double answer9 = 0.0;
+  double answer10 = 0.0;
+  double answer11 = 0.0;
+  double answer12 = 0.0;
+  double answer13 = 0.0;
+  double answer14 = 0.0;
+  double answer15 = 0.0;
+
+  int num1;
+  int num2;
+  int num3;
+  int num4;
+  int num5;
+
+  double examMax = 0.0;
+  double quizHomeMax = 0.0;
+  double classPMax = 0.0;
+  double labAssignmentMax = 0.0;
+  double labParticipationMax = 0.0;
+
+  final double EXAM_WEIGHT = 50.0;
+  final double QUIZ_AND_HOMEWORK_WEIGHT = 35.0;
+  final double CLASS_PARTICIPATION_WEIGHT = 15.0;
+  final double LAB_ASSIGNMENTS_WEIGHT = 90.0;
+  final double LAB_PARTICIPATION_WEIGHT = 10.0;
+
+  double examScore = 0.0;
+  double quizHomeworkScore = 0.0;
+  double classroomParticipationScore = 0.0;
+  double labAssignmentScore = 0.0;
+  double labParticipationScore = 0.0;
+  //double sumOfInput=0.0;
+  //double sumOfNumbers=0; //only use if calculations dont work
+  //double sumOfNumbers2=0;
+  double average;
+  double average2;
+
+  Scanner input = new Scanner(System.in);
+
+  //menu  
+
+  while (menu <= 2) {
+   System.out.println("1. Calculate 1301 Grades");
+   System.out.println("2. Calculate 1101 Grades");
+   System.out.println("3. Exit");
+   System.out.println("Welcome to iGrade, input the menu option you want (1, 2, or 3):");
+   menu = input.nextInt();
+
+   //Step 2 option 1 Calculate 1301 Grades
+   if (menu == 1) {
+    System.out.println("Please input the number of grades you have received for the lecture exams:");
+    num1 = input.nextInt();
+
+    //maximum grade for exams 
+    System.out.println("Input the maximum grade of all the exams:");
+    examMax = input.nextInt();
+
+    for (int e = 0; e < num1; e++) { //for loop for examScore
+     System.out.println("Input grade " + (e + 1));
+     examScore = input.nextInt();
+    }
+
+    answer = 100 * examScore;
+    answer2 = answer / examMax;
+    answer3 = answer2 * EXAM_WEIGHT;
+    //System.out.println(answer3);checking my math
+
+    // grades for quizzes and homework
+    System.out.println("Input the number of grades you have received for quizzes and homework assignments:");
+    num2 = input.nextInt();
+
+    //maximum grade for quizzes and homework
+    System.out.println("Input the maximum grade for all the quiz and homework grades");
+    quizHomeMax = input.nextInt();
+
+    for (int q = 0; q < num2; q++) { //for loop for input grade quizzes and homework
+      System.out.println("Input grade " + (q + 1));
+      quizHomeworkScore = input.nextInt();
+    }
+
+    answer4 = 100 * quizHomeworkScore;
+    answer5 = answer4 / quizHomeMax;
+    answer6 = answer5 * QUIZ_AND_HOMEWORK_WEIGHT;
+    //System.out.println(answer6);checking my math
+
+
+    //grades for classroom participation
+    System.out.println("Input the number of grades you have received for classroom participation:");
+    num3 = input.nextInt();
+
+    //maximum grade for classroom participation
+    System.out.println("Input the maximum grade for all the classroom participation grades:");
+    classPMax = input.nextInt();
+
+    for (int c = 0; c < num3; c++) { //for loop for input of classroom participation
+      System.out.println("Input grade " + (c + 1));
+      classroomParticipationScore = input.nextInt();
+    }
+
+    answer7 = 100 * classroomParticipationScore;
+    answer8 = answer7 / classPMax;
+    answer9 = answer8 * CLASS_PARTICIPATION_WEIGHT;
+    //System.out.println(answer9); checking my math
+
+
+    //sumOfNumbers=num1*answer3+num2*answer6+num3*answer9;
+    //System.out.println(sumOfNumbers); if not working uncomment this part
+    //average=sumOfNumbers/100;as well as this part
+
+    average = answer9;
+    System.out.printf("Your average is %.2f", average);
+    System.out.print(" which corresponds to a ");
+
+    //letter grade setup
+    if (average <= 100 && average >= 90) {
+      System.out.print("A.");
+    } else if (average <= 89 && average >= 80) {
+       System.out.print("B.");
+    } else if (average <= 79 && average >= 70) {
+      System.out.print("C.");
+    } else if (average <= 69 && average >= 60) {
+      System.out.print("D.");
+    } else if (average <= 59 && average >= 0) {
+      System.out.print("F.");
+    }
+    System.out.println("");
+   }
+
+
+   //Lab
+   if (menu == 2) {
+    System.out.println("Please input the number of grades you have received for the lab assignments:");
+    num4 = input.nextInt();
+
+    //maximum grade for lab assignments
+    System.out.println("Input the maximum grade for all lab assignments:");
+    labAssignmentMax = input.nextInt();
+
+
+     for (int l = 0; l < num4; l++) { //for loop for labAssignmentScore
+       System.out.println("Input grade " + (l + 1));
+       labAssignmentScore = input.nextInt();
+      }
+
+    answer10 = 100 * labAssignmentScore;
+    answer11 = answer10 / labAssignmentMax;
+    answer12 = answer11 * LAB_ASSIGNMENTS_WEIGHT;
+    //System.out.println(answer12); Checking to make sure the math worked
+
+
+    //grades for lab participation
+    System.out.println("Input the number of grades you have received for lab participation:");
+    num5 = input.nextInt();
+
+    //maximum grade for lab participation
+    System.out.println("Input the maximum grade for all the lab participation grades:");
+    labParticipationMax = input.nextInt();
+
+    for (int p = 0; p < num5; p++) { //for loop for input of classroom participation
+      System.out.println("Input grade " + (p + 1));
+      labParticipationScore = input.nextInt();
+    }
+
+    answer13 = 100 * labParticipationScore;
+    answer14 = answer13 / labParticipationMax;
+    answer15 = answer14 * LAB_PARTICIPATION_WEIGHT;
+    //System.out.println(answer15);
+
+    average2 = answer15;
+    System.out.printf("Your average is %.2f", average2);
+    System.out.print(" which corresponds to a ");
+
+    //letter grade setup
+    if (average2 <= 100 && average2 >= 90) {
+      System.out.print("A.");
+    } else if (average2 <= 89 && average2 >= 80) {
+       System.out.print("B.");
+    } else if (average2 <= 79 && average2 >= 70) {
+       System.out.print("C.");
+    } else if (average2 <= 69 && average2 >= 60) {
+       System.out.print("D.");
+    } else if (average2 <= 59 && average2 >= 0) {
+       System.out.print("F.");
+    }
+    System.out.println("");
+   } else if (menu == 3) {
+      System.out.println("Good bye, thank you for using iGrade!");
+    break;
+
+   }
+
+  }
+
+ }
+}
