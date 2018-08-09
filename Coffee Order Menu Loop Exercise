@@ -1,0 +1,29 @@
+import java.util.Scanner;
+ 
+public class Coffee{
+String [] ingredient= new String[10];
+    int total=0;
+double numOfIngredients;
+ String answer;
+Scanner input = new Scanner(System.in);
+System.out.println("Would you like to add an ingredient?");
+answer=input.next();
+while(answer=="yes" && numOfIngredients<10){
+    System.out.println("Enter the desired Ingredient");
+    answer=input.next();
+    ingredient[numOfIngredient]= ingredient;
+    numOfIngredient=numOfIngredient +1;
+    if(ingredient[numOfIngredient]=="Strawberry")||(ingredient[numOfIngredient]=="Chocolate"){
+        total=total+1;
+    }
+    else{
+        total=total+.50;
+    }
+   numOfIngredient=numOfIngredient+1;
+    System.out.println("Would you like to add another ingredient?");
+    answer=input.next();   
+}  
+ total=total+3;
+    return total;
+    
+}
