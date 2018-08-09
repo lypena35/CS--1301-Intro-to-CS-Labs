@@ -1,0 +1,130 @@
+import java.io.*;
+import java.util.*;
+public class Movies{
+    
+/*Attributes*/
+private String title;
+private String rating;
+private String genre;
+private int year;
+    
+/* default constructor*/
+public Movies(){   
+}
+    
+/*Constructors*/
+
+public Movies(String titleIn,String ratingIn,String genreIn,int yearIn){
+  
+this.title=titleIn;
+this.rating=ratingIn;
+this.genre=genreIn;
+this.year=yearIn; 
+}    
+/*Setters*/
+public void setTitle(String titleIn){
+    this.title=titleIn;
+}
+public void setRating(String ratingIn){
+    this.rating=ratingIn;
+}
+public void setGenre(String genreIn){
+    this.genre=genreIn;
+}
+public void setYear(int yearIn){
+    this.year=yearIn;
+}    
+
+/*Getters*/
+public String getTitle(){
+    return this.title;
+} 
+public String getRating(){
+    return this.rating;
+}
+public String getGenre(){
+    return this.genre;
+} 
+public int getYear(){
+    return this.year;
+}
+    
+/*Actuator*/
+    
+public void printMovie(){
+    System.out.println("Movie name: "+this.title+","+"is rated: "+this.rating+","+"it's genre is: "+this.genre+","+"the year it was released was: "+this.year+".");
+}        
+}
+
+import java.io.*;
+import java.util.*;
+public class MovieChecker {
+    
+ Movies[] shelf = new Movies[100];
+ int counter = 0;
+    
+ public void Movies(String fileName) throws IOException {
+  File movieTitles = new File(fileName);
+  Scanner scnr = new Scanner(movieTitles);
+
+  while (scnr.hasNext()) {
+   String title = scnr.nextLine();
+   String rating = scnr.nextLine();
+   String genre = scnr.nextLine();
+   int year = scnr.nextInt();
+   scnr.nextLine();
+   shelf[counter] = new Movies(title, rating, genre, year);
+   counter++;
+  }
+ }
+ public void findMovie(String title, int year) {
+  boolean found = false;
+  for (int i = 0; i < counter; i++) {
+   if (shelf[i].getTitle().equals(title) && shelf[i].getYear() == year) {
+    found = true;
+   }
+  }
+  if (found == false) {
+   System.out.println("We do not have this movie.");
+  } else {
+   System.out.println("We already have this movie!");
+  }
+ }
+ public static void main(String[] args) throws IOException {
+  String fileName = "";
+  String userInput = "";
+  int yearInput = 0;
+  Scanner input = new Scanner(System.in);
+  System.out.println("Please, input updated movie list file: ");
+  fileName = input.nextLine();
+  System.out.println("Please input the movie you want to check: ");
+  userInput = input.nextLine();
+  System.out.println("Please, input year of movie you want to check: ");
+  yearInput = input.nextInt();
+  MovieChecker Movie1 = new MovieChecker();
+  Movie1.Movies(fileName);
+  Movie1.findMovie(userInput, yearInput);
+ }
+}
+
+//Movie Titles
+Chef
+R
+Comedy
+2014
+The Conjuring
+R
+Horror
+2013
+The Last Samurai
+R
+Action
+2003
+Zootopia
+PG
+Animation
+2016
+Auntie Mame
+UnRated
+Comedy
+1958
