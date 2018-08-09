@@ -1,0 +1,197 @@
+/**************************************************************************
+ *CS1101 Intro to Computer Science
+ *Instructor: Villanueva
+ *Challenge Lab 2
+ *Modified and submitted by: [Lorianne Pena]
+ ***************************************************************************/
+import java.io.*;
+import java.util.*;
+public class CustomerValidation {
+
+ /*************************************************************************
+  *Input: accepts an integer array with a credit card number
+  *Output: returns true if the credit card number is valid, false otherwise
+  **************************************************************************/
+ public static boolean luhn(int[] creditCardNumberIn) {
+  for (int i = 0; i < 16; i = i + 2) {
+   creditCardNumberIn[i] = creditCardNumberIn[i] * 2;
+   creditCardNumberIn[i] = (creditCardNumberIn[i] / 10) + (creditCardNumberIn[i] % 10);
+  }
+  int sumCredCard = 0;
+  for (int i = 0; i < 16; i++) {
+   sumCredCard = creditCardNumberIn[i] + sumCredCard;
+  }
+  if (sumCredCard % 10 == 0) {
+   return true;
+  } else {
+   return false;
+  }
+ }
+
+ /**************************************************************************
+  *Input: accepts an object of type Customer.
+  *Output: prints whether the customer's credit card numbers are valid or
+  *         invalid. Use the method luhn to check all the credit card numbers
+  *         of the given customer.
+  **************************************************************************/
+ public static void checkCustomer(Customer customer1) {
+
+  try { //second exception
+   int custArray[][] = customer1.getCreditCardNum(); //temp array
+   for (int n = 0; n < customer1.getStoreCCNum(); n++) { //getting the stored credit card numbers from customer1 which is a instance of the customer object
+
+    if (!luhn(custArray[n])) {
+     System.out.println(customer1.getName() + ", this credit card number is not a vaild number!");
+    } else {
+     System.out.println(customer1.getName() + ", your Credit Card is valid!");
+    }
+   }
+  } catch (ArrayIndexOutOfBoundsException e) {
+   System.out.println("Out of bounds array");
+  }
+ }
+
+ public static void main(String[] args) throws IOException {
+  //Create your customer using joeDoe.txt
+
+  //Check if costumer's credit card numbers are valid.
+  try { //third exception
+   String fileName = "";
+   Scanner input = new Scanner(System.in);
+   System.out.println("Please, input file name:");
+   fileName = input.nextLine();
+   Customer customer1 = new Customer(fileName);
+   checkCustomer(customer1);
+  } catch (FileNotFoundException f) {
+   System.out.println("This file cannot be found.");
+
+  }
+ }
+}
+
+/* CS1101- Intro to Computer Science
+Instructor: Villanueva
+Challenge Lab 2
+Modified and submitted by: [Lorianne Pena]
+*/
+import java.io.*;
+import java.util.*;
+public class Customer {
+ /************************************************
+  *Attributes:
+  *name, age, credit card numbers in a 2D array.
+  ************************************************/
+ private String name;
+ private int age;
+ private int creditCardNum[][] = new int[10][16];
+ private int storeCCNum;
+ File JoeDoe = new File("JoeDoe.txt");
+
+ /******************************************************
+  *Constructors:
+  * - Default constructor
+  * - Constructor that receives a string filename, reads
+  *   the file and assigns a value to all the attributes
+  *   with the information from the file.
+  *******************************************************/
+ public Customer() {
+
+ }
+
+ public Customer(String fileName) throws IOException {
+
+  int i = 0;
+  String stringOfStrings[];
+  String store;
+  JoeDoe = new File(fileName);
+  Scanner input = new Scanner(JoeDoe);
+  this.name = input.nextLine();
+  this.age = input.nextInt();
+  input.nextLine();
+
+  try { //first exception
+   while (input.hasNextLine()) {
+    String ccString = input.nextLine();
+    stringOfStrings = ccString.split("");
+
+    for (int j = 0; j < 16; j++) { //j=columns
+     creditCardNum[i][j] = Integer.parseInt(stringOfStrings[j]);
+    }
+    i++;
+   }
+  } catch (ArrayStoreException g) {
+   System.out.println("The array element is a incompatible type.");
+  }
+  storeCCNum = i; //this is storing the numbers to help them print array
+ }
+
+ /*****************************************************
+  *Setters for all the attributes
+  ******************************************************/
+ public void setName(String nameIn) {
+  this.name = nameIn;
+ }
+
+ public void setAge(int ageIn) {
+  this.age = ageIn;
+ }
+
+ /*****************************************************
+  *Getters for all the attributes
+  ******************************************************/
+ public String getName() {
+  return this.name;
+ }
+
+ public int getAge() {
+  return this.age;
+ }
+
+ public int[][] getCreditCardNum() {
+  return this.creditCardNum;
+ }
+
+ public int getStoreCCNum() {
+  return this.storeCCNum;
+ }
+
+ /******************************************************
+  *Actuator(s)
+  * - Print method that prints all the customer information
+  *******************************************************/
+ public void printCustomer() {
+
+  System.out.println(this.JoeDoe.getName());
+  System.out.println("Name: " + this.name);
+  System.out.println("Age: " + this.age);
+  System.out.println("Credit Card Numbers:");
+  for (int n = 0; n < storeCCNum; n++) { //printing array row
+
+   for (int j = 0; j < creditCardNum[0].length; j++) { //printing array columns
+    System.out.print(creditCardNum[n][j]);
+   }
+   System.out.println("");
+  }
+ }
+
+ /*****************************************************
+ *Include the main method to test if you can create
+ *an instance of Customer with the information provided
+ *in the text file.
+ /******************************************************/
+ public static void main(String[] args) throws IOException {
+  String fileName = "";
+  Scanner input = new Scanner(System.in);
+  System.out.println("Please, input file name");
+  fileName = input.nextLine();
+  Customer customer1 = new Customer(fileName);
+  customer1.printCustomer();
+ }
+}
+
+//Text File To Test Credit Card Validation
+Joe Doe
+32
+8273123273510569
+5265083763902009
+1234567812345670
