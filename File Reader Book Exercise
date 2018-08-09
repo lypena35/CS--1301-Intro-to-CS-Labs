@@ -1,0 +1,63 @@
+import java.io.*;
+import java.util.*;
+
+public class BookInformation {
+    public static void main(String [] args){
+        String title;
+        int publishedYear;
+        String isbn;
+        long[] ISBN = new long[4];
+        int numOfBooks = 0;
+
+        try{
+            File books = new File("bookInfo.txt");
+            Scanner scnr = new Scanner(books);
+            while(scnr.hasNextLine()){
+                title = scnr.nextLine();
+                try {
+                    publishedYear = scnr.nextInt();
+                    scnr.nextLine();
+                }
+                catch(InputMismatchException e){ //if we read something that is not a year
+                    System.out.println("NOT A YEAR: " + e.getMessage());
+                }
+                try{
+                    isbn = scnr.nextLine();
+                    ISBN[numOfBooks] = Long.parseLong(isbn); //converts number from a String to a long and stores it
+                }
+                catch(NumberFormatException e){ //if the string is not a number
+                    System.out.println("NOT A NUMBER: " + e.getMessage());
+                }
+                catch(ArrayIndexOutOfBoundsException e){ //if we store more than 10 books
+                    System.out.println("YOU GOT MORE THAN 4 BOOKS " + e.getMessage());
+                    return;
+                }
+				System.out.println(title);
+                try{
+                   scnr.nextLine(); 
+                }
+                catch(NoSuchElementException e){
+                    System.out.println("THERE IS NO NEXT LINE.");
+                    
+                }
+                numOfBooks++;
+            }
+        }
+        catch(FileNotFoundException e){
+            System.out.println("ERROR FOUND: " + e.getMessage());
+        }
+    }
+}
+//File With Book Information
+
+The 120 Days of Simon
+2010
+9781603090506
+
+Bighead
+1997
+9781891830563
+
+Fox Bunny
+2007
+9781891830976
