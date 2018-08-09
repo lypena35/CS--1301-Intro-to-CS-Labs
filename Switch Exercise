@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class EmotionalRobot3 {
+	public static void main(String[] args){
+		String sound;// declare your variables
+        String answer;
+		String ifNo;
+        
+		Scanner input = new Scanner(System.in);
+        
+        System.out.print(" Do you want to enter a sound? ");
+         answer = input.next();
+        if (answer.equalsIgnoreCase("No")|| answer.equals("no")){
+			System.out.println("Thank you for you're input.");
+        }
+	while 	
+        (answer.equalsIgnoreCase("Yes")|| answer.equals("yes")){
+			System.out.println(" Input your sound. ");
+		    sound = input.next();
+		    switch(sound){
+				case "laugh": System.out.println("happy ^(^-^)^ ");
+                              System.out.println("Eyebrows raised, eyes wide, mouth curled up on both ends to make a smile." );
+                              
+                    break;
+				
+				case "cry": System.out.println("sad (;-;) ");
+                            System.out.println("Eyebrows furrow downwards, eyes look down, smile turns upside down.");
+                            
+				   break;
+                    
+				case "moan": System.out.println("pain (*.*) ");
+                             System.out.println("Eyebrows raised high, eyes widen or close, mouth puckers or frowns.");
+                             
+				   break;
+                    
+				default: System.out.println("Sound not recognized!");
+                         System.out.println("Please type enter or type no to exit.");
+			}
+			
+            System.out.println(" Do you want to enter a sound?" );
+             answer=input.next();
+			
+		}
+			
+    }
+ }
