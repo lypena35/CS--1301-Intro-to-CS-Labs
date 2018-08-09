@@ -1,0 +1,94 @@
+/* Lab Session: More on methods
+ * Complete the following code to implement the functionality presented on the accompaying slides.
+ * Test the code with the test inputs provided.
+ * Demonstrate the functionality of your code to an instructor.
+ * Resubmit this file with the complete code.
+ */
+
+import java.util.Scanner;
+
+ public class PizzaInc {
+
+   public static boolean hasIngredient(String ingredient, String pizzaName) {
+   /* Implement the functionality of the hasIngredient method here.
+    Use the variables you receive: ingredient and pizzaName to 
+    verify if the ingredient is part of the pizzaName received.
+    Do not forget to return a boolean value (true or false).
+   */
+
+    if (pizzaName.equals("marguerita") || (pizzaName.equals("Marguerita"))) {
+
+     if (ingredient.equals("basil") || (ingredient.equals("tomato") || 
+      (ingredient.equals("mozzarella")))) {
+       System.out.println("The " + pizzaName + " does contain " + ingredient);
+       return true;
+     }
+      System.out.println("The " + pizzaName + " does not contain " + ingredient);
+      return false;
+   }
+
+    if (pizzaName.equals("Hawaiian") || (pizzaName.equals("hawaiian"))) {
+
+     if (ingredient.equals("ham") || (ingredient.equals("pinapple") ||
+      (ingredient.equals("mozzarella")))) {
+       System.out.println("The " + pizzaName + " does contain " + ingredient);
+       return true;
+     }
+     System.out.println("The " + pizzaName + " does not contain " + ingredient);
+     return false;
+   }
+
+    if (pizzaName.equals("MeatLovers") || (pizzaName.equals("meatlovers"))) {
+       
+     if (ingredient.equals("pepperoni") || (ingredient.equals("sausage") ||
+      (ingredient.equals("ham")))) {
+       System.out.println("The " + pizzaName + " does contain " + ingredient);
+      return true;
+     }
+     System.out.println("The " + pizzaName + " does not contain " + ingredient);
+     return false;
+    } 
+   else {
+    System.out.println("Pizza Name not valid.");
+    return false;
+   }
+
+  } // end of the method hasIngredient
+
+  public static void main(String[] args) {
+
+   /* Define your variables in this section 
+ Do not forget to include a variable to read the ingredient and pizzaName from 
+ the user.
+  */
+    String ingredient;
+    String pizzaName;
+    boolean ingredients = true;
+    boolean hasIngredient = true;
+
+    Scanner input = new Scanner(System.in);
+
+
+
+   /* Include the main functionality of your program.
+    Do not forget to call the method hasIngredient.
+ Print the results of calling the method hasIngredient by calling it 
+ with the following values:
+ - ham, Hawaiian.
+ - chipotle,Hawaiian.
+ - ham, Vegan.
+ - sausage, MeatLovers*/
+      
+    System.out.println("Please enter the name of the pizza you would like to order");
+    pizzaName = input.next();
+    ingredients = hasIngredient("ham", "Hawaiian");
+    ingredients = hasIngredient("chipotle", "Hawaiian");
+    ingredients = hasIngredient("ham", "Vegan");
+    ingredients = hasIngredient("sausage", "MeatLovers");
+
+
+
+  } // end of the main method.
+
+
+}
