@@ -1,0 +1,44 @@
+import java.util.Scanner;
+import java.io.File;//import for file
+import java.io.IOException;
+
+//import java.io.*; //import everything it io folder to prevent to many io lines
+public class FileReader{
+public static void main (String [] args)throws IOException{//as a backup in case the file is not found
+
+//Create File
+  File mySong=new File("song.txt");
+    
+  //Scan File
+  Scanner input=new Scanner(mySong);
+    String line;
+    
+    //creating a array to store the song
+    //String [] song= new String[100];//better to know how many lines so we wont waste memory
+    
+    int i=0;// for the index
+    int numLine=0;//for number of lines in file
+    
+    //read file line by line to know how many numbers of lines in the file
+    while(input.hasNextLine()){
+        input.nextLine(); //cursor to move to the next line
+        numLine++;
+    }
+    String [] song=new String[numLine];
+    //moing the cursor to the top of the file 
+    input=new Scanner(mySong);
+    
+  //Read file line by line
+  while(input.hasNextLine()){//to read if there is a next line true or false
+   line=input.nextLine();//calling it to read the file
+      song[i]=line; //we store the array so we can print, we dont need next
+      //System.out.println(line);//printing it
+      i++;//need to increment i 
+  }
+    for(int j=0; j<song.length;j++){//printing the array
+        System.out.println(song[j]);
+        
+    }
+}
+
+}
