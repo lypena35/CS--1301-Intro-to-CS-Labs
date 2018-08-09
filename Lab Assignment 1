@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class PersonalInfo{
+	public static void main(String[] arg){
+
+		Scanner input = new Scanner(System.in);
+
+		//Read user's name
+		System.out.println("Please enter your name");
+		String name=input.nextLine();
+
+		//Read user's birth year
+		System.out.println("Please enter your birth year");
+		int year = input.nextInt();
+
+		//Calculate user's age
+		int age = 2017 - year;
+
+		//Read user's height in inches
+		System.out.println("Please enter your height in inches.");
+		double inches = input.nextDouble();
+		double height = inches * 2.54; 
+		
+		
+		//Print user information
+		System.out.println("Hello " + name);
+		System.out.println("You are or you will be " + age + "years old this year.");
+       
+	   //Print user's height in centimeters
+	   System.out.println("Your height is " + height + " in centimeters.");
+	}
+}
