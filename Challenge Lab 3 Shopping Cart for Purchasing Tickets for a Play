@@ -1,0 +1,372 @@
+/**
+ *You have been given the task of creating a program that creates a shopping cart for an online company that sells tickets for events. Your program will have a menu that allows a user to create a shopping cart, add tickets and checkout. For simplicity, the user will input the information of the ticket.
+ **/
+
+import java.util.Scanner;
+
+public class ShoppingCart {
+ private String clientName;
+ private Ticket[] ticketsPurchased = new Ticket[20];
+ private int ticketNumber = 0;
+ private double totalPurchase;
+
+
+ //Default constructor
+ public ShoppingCart() {
+
+ }
+
+ //second constructor for the class that receives as parameter the clientName.
+
+ public ShoppingCart(String clientNameIn) {
+  this.clientName = clientNameIn;
+ }
+
+ //Setter method for the attribute name
+ public void setClientName(String clientNameIn) {
+   this.clientName = clientNameIn;
+  }
+  //Setter method for the arrtibute totalPurchase
+ public void setTotalPurchase(double totalPurchaseIn) {
+  this.totalPurchase = totalPurchaseIn;
+ }
+
+ //Getter Method for the attribute name
+ public String getClientName() {
+  return this.clientName;
+ }
+
+ public double getTotalPurchase() {
+  return this.totalPurchase;
+ }
+
+
+ //other methods-Actuator methods
+
+ //the method addToCart that adds a new ticket into the array of purchased tickets.
+ //This method receives newTicket, an instance of the class Ticket, adds it to the list
+ //of ticketsPurchased. 
+
+ public void addToCart(Ticket newTicket) {
+  ticketsPurchased[ticketNumber] = newTicket;
+  ticketNumber++;
+ }
+
+ //The method calculateTotal that calculates the total purchase by:
+ //1. Adding the price of all the tickets in the list
+ //2. Adding 15% of taxes.
+ //3. Set the totalPurchase to the total purchase calculated.
+
+ public void calculateTotal() {
+  double total = 0.0;
+  for (int i = 0; i < ticketNumber; i++) {
+   //This statement adds the price of individual tickets.
+   total = total + ticketsPurchased[i].getPrice();
+
+  }
+  //This statement assigned the value of the total purchase to the total +15%.
+  this.totalPurchase = total + (total * .15);
+ }
+
+ //The method printShoppingCart prints this information of the shopping cart (each ticket).
+ public void printShoppingCart() {
+  for (int j = 0; j < ticketNumber; j++) {
+   ticketsPurchased[j].printTicket();
+  }
+ }
+
+ //Main method of the class ShoppingCart which creates an instance of the class
+ //shopping cart and enables input user with a menu.
+
+ public static void main(String[] args) {
+  ShoppingCart myShoppingCart = new ShoppingCart();
+  Scanner input = new Scanner(System.in);
+  int option = 0;
+  String name = "";
+  String event = "";
+  String seat = "";
+  float price = 0;
+  boolean available;
+  //While method for the menu options
+
+  while (option != 3) {
+   System.out.println("1. Set client name");
+   System.out.println("2. Add tickets to shopping cart");
+   System.out.println("3. Checkout");
+   System.out.print("Input your option: ");
+   option = input.nextInt();
+   input.nextLine();
+   System.out.println("Option selected- " + option);
+   switch (option) {
+    case 1:
+     System.out.print("Please, enter client name: ");
+     name = input.next();
+     myShoppingCart.setClientName(name);
+     break;
+    case 2:
+     System.out.println("Please, enter the event of the ticket: ");
+     Ticket newTicket = new Ticket();
+     event = input.nextLine();
+     newTicket.setEvent(event);
+     System.out.println("Please, enter seat number: ");
+     seat = input.next();
+     newTicket.setSeat(seat);
+     System.out.println("Please, enter the price of the event: ");
+     price = input.nextFloat();
+     newTicket.setPrice(price);
+     myShoppingCart.calculateTotal();
+     System.out.println("Is this ticket available? (Please give a true or false answer.)");
+     available = input.nextBoolean();
+     newTicket.setAvailable(available);
+     myShoppingCart.addToCart(newTicket);
+     break;
+    case 3:
+     myShoppingCart.calculateTotal();
+     myShoppingCart.printShoppingCart();
+     System.out.println(myShoppingCart.clientName + " your total is: $" + myShoppingCart.totalPurchase);
+     break;
+
+    default:
+     System.out.print("Unrecognized input, try again");
+
+   }
+  }
+ }
+}
+
+/**
+ *You have been given the task of creating a program that creates a shopping cart for an online company that sells tickets for events. Your program will have a menu that allows a user to create a shopping cart, add tickets and checkout. For simplicity, the user will input the information of the ticket.
+ **/
+
+import java.util.Scanner;
+
+public class Cart {
+ private String clientName;
+ private Ticket[] ticketsPurchased = new Ticket[20];
+ private int ticketNumber = 0;
+ private double totalPurchase;
+ private double individualTickets;
+
+ //Default constructor
+ public Cart() {
+
+ }
+
+ //second constructor for the class that receives as parameter the clientName.
+
+ public Cart(String clientNameIn) {
+  this.clientName = clientNameIn;
+ }
+
+ //Setter method for the attribute name
+ public void setClientName(String clientNameIn) {
+   this.clientName = clientNameIn;
+  }
+  //Setter method for the arrtibute totalPurchase
+ public void setTotalPurchase(double totalPurchaseIn) {
+  this.totalPurchase = totalPurchaseIn;
+ }
+
+ //Getter Method for the attribute name
+ public String getClientName() {
+  return this.clientName;
+ }
+
+ public double getTotalPurchase() {
+  return this.totalPurchase;
+ }
+
+
+ //other methods-Actuator methods
+
+ //the method addToCart that adds a new ticket into the array of purchased tickets.
+ //This method receives newTicket, an instance of the class Ticket, adds it to the list
+ //of ticketsPurchased and makes the newTicket unavailable. 
+
+ public void addToCart(Ticket newTicket) {
+   for (int i = 0; i < this.ticketsPurchased.length; i++) {
+      if(ticketsPurchased[i]==null){
+       this.ticketsPurchased[i] = newTicket;
+    ticketNumber++;
+          return;
+      }
+   }
+   newTicket.setAvailable(false);
+  }
+  //The method calculateTotal that calculates the total purchase by:
+  //1. Adding the price of all the tickets in the list
+  //2. Adding 15% of taxes.
+  //3. Set the totalPurchase to the total purchase calculated.
+
+ public void calculateTotal() {
+  double total = 0;
+
+  //This statement adds the price of individual tickets.
+  individualTickets += ticketNumber;
+
+
+  //This statement assigned the value of the total purchase to the total +15%.
+  totalPurchase = individualTickets + .15;
+ }
+
+ //The method printShoppingCart prints this information of the shopping cart (each ticket).
+ public void printShoppingCart() {
+  for (int j = 0; j < this.ticketsPurchased.length; j++) {
+      if(ticketsPurchased[j]==null){
+          return;
+      }
+      this.ticketsPurchased[j].printTicket();
+  }
+ }
+
+ //Main method of the class ShoppingCart which creates an instance of the class
+ //shopping cart and enables input user with a menu.
+
+ public static void main(String[] args) {
+  ShoppingCart myShoppingCart = new ShoppingCart();
+  Scanner input = new Scanner(System.in);
+  int option = 0;
+  String name = "";
+  String event = "";
+    String seat="";
+     float price=0.0;
+     boolean available;
+  //While method for the menu options
+
+  while (option <= 2) {
+   System.out.println("1. Set client name");
+   System.out.println("2. Add tickets to the shopping cart");
+   System.out.println("3. Checkout");
+   System.out.print("Input your option: ");
+   option = input.nextInt();
+   System.out.println("Option selected-" + option);
+   if (option == 1) {
+    //Option 1 will request input for the client name.
+    System.out.println(" Enter client name:");
+    name = input.next();
+   }
+   //Option 2 will create a new ticket, request the input of ticket information
+   //and add the new ticket to the shopping cart with the method addToCart.
+   else if (option == 2) {
+    System.out.println(" Enter the event of the ticket:");
+    Ticket newTicket = new Ticket();
+    //myShoppingCart.printShoppingCart();
+    event = input.next();
+       newTicket.setEvent(event);
+    System.out.println(" Enter the seat of the ticket:");
+       seat=input.next();
+       newTicket.setSeat(seat);
+       System.out.println(" Enter the price of the ticket:");
+       price=input.nextInt();
+       newTicket.setPrice(price);
+       System.out.println(" Is this ticket available?");
+       available=Boolean.parseBoolean(input.next);
+       
+       newTicket.setAvailable(available);
+       myShoppingCart.addToCart(newTicket);
+        myShoppingCart.printShoppingCart();
+   }
+   //Option 3 will do the checkout by:
+   //Calculating the total of the shopping cart,
+   //printing the contents of the shopping cart and exiting the program.
+   else if (option == 3) {
+    myShoppingCart.calculateTotal();
+    System.out.println(name + "," + " your total is: ");
+
+   } else {
+    System.out.println("Unrecognized input, try again");
+   }
+  }
+ }
+}
+
+/***
+ **Class Ticket to create tickets
+ **
+ ***/
+public class Ticket {
+
+ //Attributes
+ private String event;
+ private String seat;
+ private float price;
+ private boolean available;
+
+ //Default Constructor
+ public Ticket() {}
+
+ //Second Constructor
+
+ public Ticket(String eventIn, String seatIn, float priceIn, boolean availableIn) {
+  this.event = eventIn;
+  this.seat = seatIn;
+  this.price = priceIn;
+  this.available = availableIn;
+ }
+
+ //Third Constructor
+
+ public Ticket(String eventIn, String seatIn, float priceIn) {
+  this.event = eventIn;
+  this.seat = seatIn;
+  this.price = priceIn;
+  this.available = true;
+ }
+
+ //Setters
+
+ public void setEvent(String eventIn) {
+  this.event = eventIn;
+ }
+
+ public void setSeat(String seatIn) {
+  this.seat = seatIn;
+ }
+
+ public void setPrice(float priceIn) {
+  this.price = priceIn;
+ }
+
+ public void setAvailable(boolean availableIn) {
+  this.available = availableIn;
+ }
+
+ //Getters
+
+ public String getEvent() {
+  return this.event;
+ }
+
+ public String getSeat() {
+  return this.seat;
+ }
+
+ public float getPrice() {
+  return this.price;
+ }
+
+ public boolean getAvailable() {
+  return this.available;
+ }
+
+ //Actuators/Method
+
+ public void printTicket() {
+  System.out.print("Event: " + this.event + "," + " Seat: " + this.seat + ",");
+  System.out.printf(" Price: $%.2f", this.price);
+  if (this.available)
+   System.out.println(", AVAILABLE.");
+  else
+   System.out.println(", UNAVAILABLE.");
+ }
+
+ //Define main method
+
+ public static void main(String[] args) {
+
+  Ticket newTicket = new Ticket("The Nutcracker", "2A", 75);
+  newTicket.printTicket();
+  newTicket.setAvailable(false);
+ }
+
+}
