@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class Teams{
+ public static void main (String [] args){
+	  
+	  Scanner input= new Scanner(System.in);
+	  int number;
+	  int teamsOfFour;
+	  int teamsOfThree;
+	  String name;
+	  //User Name
+	  System.out.println("What is your name?");
+	   name=input.nextLine();
+	  
+    //Read how many students are in the lab
+	  System.out.println("How many students are in your lab?");
+      number= input.nextInt();
+	
+	//Calculate how many teams of four are in the lab.
+	  System.out.println("How many teams of four are in your lab?");
+	   teamsOfFour= input.nextInt();
+	
+	//Calculate how many teams of three are in the lab.
+	  System.out.println("How many teams of three are in your lab?");
+	 teamsOfThree=input.nextInt();
+	  
+	//Print Name of the user, how many teams of three and 
+	//teams of four are in the lab. 
+	System.out.println(name + " you have "+ number + " people in your lab.");
+	System.out.println("You have "+ teamsOfThree+ " teams of three in your lab."); 
+	System.out.println("You also have "+ teamsOfFour+ " teams of four in your lab. ");
+ }
+}
