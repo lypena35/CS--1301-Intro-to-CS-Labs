@@ -1,0 +1,75 @@
+import java.util.Scanner;
+ 
+
+public class UserAccount{
+	private String userName;
+	private int password;
+	private boolean locked;
+
+	public UserAccount(){
+		this.userName = "none";
+		this.password = 500;
+	}
+
+	public UserAccount(String userName, int password){
+		this.userName = userName;
+		this.password = password;
+	}
+
+	//Getters
+	public String getUserName(){
+		return this.userName;
+	}
+	public int getPassword(){
+		return this.password;
+	}
+	public boolean getLocked(){
+		return this.locked;
+	}
+
+	//Setters
+	public void setUserName(String userNameIn){
+		this.userName = userNameIn;
+	}
+	public void setPassword(int passwordIn){
+		this.password = password;
+	}
+	public void setLocked(boolean lockedIn){
+		this.locked = lockedIn;
+	}
+
+	public void readCredentials(){
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter user name");
+		String uN = input.nextLine();
+		System.out.println("Enter password");
+		int pass = input.nextInt();
+		while(pass<500 || pass>600){
+			System.out.println("Incorrect password, try again");
+			pass = input.nextInt();
+		}
+		this.setUserName(uN);
+		this.setPassword(pass);
+	}
+
+	public void verifyCredentials(){
+		int tries = 0;
+		int pass = 0;
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter user name");
+		String uN = input.nextLine();
+		while(pass != this.getPassword() && tries < 3){
+			System.out.println("Enter password again");
+			pass = input.nextInt();
+			tries++;
+		}
+		if(pass == this.getPassword()){
+			System.out.println("Correct password");
+		}
+		if(tries == 3){
+			System.out.println("Account locked");
+			this.setLocked(true);
+		}
+	}
+
+}
