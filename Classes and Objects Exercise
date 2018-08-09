@@ -1,0 +1,172 @@
+/***
+**  Class friend 
+**  CS1301 Lecture Exercise - Classes and Objects
+***/
+
+public class Friend {
+
+       // The class friend contains the attributes name, nickname, age, phone and BFF. 
+       //The attributes should only be available to methods inside the class.
+
+
+ private String name;
+ private String nickname;
+ private String phone;
+ private int age;
+ private boolean BFF;
+ 
+
+ // Default constructor for the class Friend
+ public Friend(){
+  
+ }
+ 
+ //  Second constructor for the class Friend that receives values for all the attributes in the class Friend and assigns them to each corresponding attribute.
+ public Friend(String name, String nickname, String phone, int age, boolean BFF){
+  this.name = name;
+  this.nickname = nickname;
+  this.phone = phone;
+  this.age = age;
+  this.BFF = BFF;
+ }
+ 
+ 
+ // Setter methods.
+ public void setName(String name){
+  this.name = name;
+ }
+ 
+ public void setNickname(String nickname){
+  this.nickname = nickname;
+ }
+ 
+ public void setPhone(String phone){
+  this.phone = phone;
+ }
+
+ public void setAge(int age){
+  this.age = age;
+ }
+ 
+ 
+ public void setBFF(boolean BFF){
+  this.BFF = BFF;
+ }
+ 
+ //Getter methods.
+ public String getName(){
+  return this.name;
+ }
+ 
+ public String getNickname(){
+  return this.nickname;
+ }
+ 
+ public int getAge(){
+  return this.age;
+ }
+ public String getPhone(){
+  return this.phone;
+ }
+ public boolean getBFF(){
+  return this.BFF;
+ }
+ 
+ //Actuators  the method printFriend which prints the attributes of the instances of the object Friend as follows:
+
+    //Tony a.k.a. green friend, age: 23, bff:yes.
+
+    
+ public void printFriend(){
+  System.out.print(this.name +",a.k.a.  "+this.nickname+",");
+  System.out.println(" ph: "+this.phone +" age: "+this.age+ " BFF: "+this.BFF);
+ }
+ 
+ public static void main(String[] args){
+
+      //  Create an instance testFriend1 with the following information:
+
+          Friend greenFriend=new Friend("Tony", "blue friend", "9151112222", 23, true);
+                              
+      //Print the information of the isntance blueFriend using the method printFriend.
+
+          greenFriend.printFriend();
+
+     // Change the age of the testFriend1 to 23.
+
+          greenFriend.setAge(24);
+        
+     // Testing: Print the information of the object testFriend1 again to make sure the age was changed.
+        
+         greenFriend.printFriend();
+ }
+ 
+}
+
+public class Contact{
+  //Define the name of contact's owner
+    private String owner;
+    
+
+  /*Define the structure that will allow you to store your friends and
+  additional variables you may need to keep track  of how many friends
+  you have in your contacts */
+
+Friend[] contacts = new Friend[20];
+    int numberOfFriends=0;
+    
+//Default Constructor 
+    public Contact(){
+        
+    }
+    
+public void setOwner(String owner){
+    this.owner=owner;
+}    
+    
+public String getOwner(){
+    return this.owner;
+}    
+  //Actuator
+  public void addFriend(Friend newFriend){
+      contacts[numberOfFriends] = newFriend;
+      numberOfFriends++;
+      
+
+  }
+
+  public void findBFFsOlder21(){
+   for(int i=0; i<numberOfFriends;i++){
+       if(contacts[i].getBFF()&& contacts[i].getAge()>=21){
+           contacts[i].printFriend();
+       }
+   }
+  }
+
+  public static void main(String [] args){
+    /*Create the following friends and add them to your contacts:
+    name: Tony, nickname: blue friend, ph: 9151112222, age:23, bff: true
+    name: Kay, nickname: pink friend, ph: 9151122333, age: 19, bff: true
+    name: Mary, nickname: yellow friend, ph: 9151432222, age: 24, bff: true
+    name: Juan, nickname: green friend, ph: 9151112442, age: 25, bff: false
+    */
+    
+    Friend f1 = new Friend("Tony","blue friend","9151112222",23,true);
+    Friend f2= new Friend("Kay", "pink friend","9151122333",19,true);
+    Friend f3= new Friend("Mary", "yellow friend","9151432222", 24, true);
+    Friend f4= new Friend ("Juan","green friend","9151112442", 25,false);
+    
+      Contact myContacts = new Contact();
+      myContacts.setOwner("Bob");
+      
+    myContacts.addFriend(f1);
+    myContacts.addFriend(f2);
+    myContacts.addFriend(f3);
+    myContacts.addFriend(f4);  
+
+    //Call the method findBFFsOlder21
+   
+   myContacts.findBFFsOlder21 (); 
+    
+  }
+}
