@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+ public class Average {
+ public static void main(String[] args){
+  
+    Scanner input = new Scanner(System.in);
+     int num1=0;
+     int read;
+     double average;
+     double sumOfNumbers=0.0;
+     
+   System.out.println("How many numbers do you wish to enter?");     
+     read=input.nextInt();
+     for(int i=0;i<read;i++){
+      System.out.println("Enter grade " + (i+1));
+      num1=input.nextInt();    
+      sumOfNumbers+=num1;
+     
+         
+}
+    average=(sumOfNumbers/read);
+    System.out.printf(  "Your average is %.2f " , average);
+ }
+}
