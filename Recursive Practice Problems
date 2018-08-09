@@ -34,7 +34,7 @@ We want to compute the total number of ears across all the bunnies
 recursively (without loops or multiplication).Results:bunnyEars(0) → 0,
 bunnyEars(1) → 2,bunnyEars(2) → 4*/
 
-import java.util.Scanner;
+
 public class bunny {
  public static int bunnyEars(int bunnies) {
   if (bunnies > 1) {
@@ -61,7 +61,7 @@ recursively (no loops or multiplication) the total number of blocks in
 such a triangle with the given number of rows.
 Results:triangle(0) → 0,triangle(1) → 1,triangle(2) → 3.*/
 
-import java.util.Scanner;
+
 public class triBlocks {
  public static int triangle(int rows) {
   if (rows < 2) {
@@ -79,3 +79,74 @@ public class triBlocks {
   System.out.println(result);
  }
 }
+// Fibonacci sequence recursively
+public class fibonacci1 {
+
+ public static int fibonacci(int n) {
+  if (n == 0) {
+   return 0;
+  } else if (n == 1) {
+   return 1;
+  } else {
+   return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+ }
+ public static void main(String[] args) {
+  Scanner input = new Scanner(System.in);
+  int count = 0;
+  System.out.println("Enter number: ");
+  count = input.nextInt();
+  for (int i = 0; i < count; i++) {
+   System.out.print(fibonacci(i) + " ");
+  }
+ }
+}
+
+//Find the maximum number in the array recursively
+public class FindMax{
+    
+public static int findMax(int[] arr, int length){
+    if(length==1){
+        return arr[0];
+    }
+    else{
+        return max(arr[length-1], findMax(arr,length-1));
+    }
+}    
+
+public static int max(int a, int b){
+    if(a>b)
+        return a;
+    else
+        return b;
+}    
+public static void main(String[] args){
+    int[] arr={10,5,7,9,15,6,11,8,12,2};
+    int maximum = findMax(arr,arr.length);
+    System.out.println("Maximum element: "+maximum);
+}
+}
+//Calculating the factorial recursively
+import java.util.*;
+public class calculateFactorial {
+
+ public static int factorial(int n) {
+  if (n > 1) {
+   return n * factorial(n - 1);
+  } else {
+   return 1;
+  }
+
+ }
+ 
+ public static void main(String[] args) {
+  Scanner input = new Scanner(System.in);
+  int number;
+  int factorialResult;
+  System.out.println("Enter a number: ");
+  number = input.nextInt();
+  factorialResult = factorial(number);
+  System.out.println("Factorial of " + number + " is " + factorialResult);
+ }
+}
+
