@@ -1,0 +1,71 @@
+
+//Array exercise cupcake and drink flavors
+public class Arrays{
+//This method prints all the elements in the array
+public static void printArray(String[] array){
+  for(int i =0; i<array.length; i++){
+    System.out.println(array[i]);
+  }
+}
+
+public static void main(String [] args){
+  //Initialize arrays
+  String[] cupcakes = new String[4];
+  String[] drinks = new String[4];
+
+  //Assign  values
+  cupcakes[0] = "chocolate";
+  cupcakes[1] = "vanilla";
+  cupcakes[2] = "sour cream";
+  cupcakes[3] = "german chocolate";
+
+  drinks[0] = "strawberry";
+  drinks[1] = "peach";
+  drinks[2] = "lemonade";
+  drinks[3] = "lime";
+
+  //Print elements
+  System.out.println("Values of cupcakes:");
+  printArray(cupcakes);
+  System.out.println("Values of drinks");
+  printArray(drinks);
+
+  }
+}
+//Calculating trip expenses( Array exercises) 
+public class tripExpense{
+    public static void main(String[] args){
+    
+      String []item=new String[4];
+      double [] expense=new double [4];
+      double highestExpense=0.0;
+      double sum=0.0;
+      int i=0;
+      int s=0;
+      String highestItem=item[i];    
+        
+      item[0]="Uber";
+      item[1]="Airfare";
+      item[2]="Hotel";
+      item[3]="Food";
+        
+      expense[0]=50.75;
+      expense[1]=400.50;
+      expense[2]=300.00;
+      expense[3]=120.25;
+    
+      for(i=0;i<expense.length;i++){
+          if(highestExpense<=expense[i]){
+            highestItem=item[i];
+            highestExpense=expense[i];  
+          }
+      }
+      System.out.println("The highest expense was "+highestItem+ " with an amount of "+highestExpense+".");
+        
+      for(s=0;s<expense.length;s++){
+          sum=expense[s]+sum;
+          
+      }  
+      System.out.println("The total expense was "+sum+ ".");
+    }
+  }
